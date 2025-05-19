@@ -23,6 +23,19 @@ describe('[Entity] Client', () => {
     expect(client.value.updatedAt).toBeInstanceOf(Date);
   });
 
+  it('should create a client with valid id, name, email, updatedAt and createdAt', () => {
+    const id = 'any_id';
+    const createdAt = new Date(2015, 0, 1);
+    const updatedAt = new Date(2015, 0, 1);
+    const client = new Client({ ...payload, id, updatedAt, createdAt });
+
+    expect(client.value.id).toBe(id);
+    expect(client.value.name).toBe(payload.name);
+    expect(client.value.email).toBe(payload.email);
+    expect(client.value.updatedAt).toEqual(updatedAt);
+    expect(client.value.createdAt).toEqual(createdAt);
+  });
+
   it('should throw if name is missing', () => {
     payload.name = '';
     expect(() => new Client(payload)).toThrow('name is required');
