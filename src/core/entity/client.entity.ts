@@ -2,8 +2,11 @@ import { Id } from '../_share/value-object/id.value-object';
 import { Account } from './account.entity';
 
 export type TClientInput = {
+  id?: string;
   name: string;
   email: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 };
 
 export type TClienOutput = {
@@ -24,12 +27,12 @@ export class Client {
   private updatedAt: Date;
 
   constructor(payload: TClientInput) {
-    this.id = new Id();
+    this.id = new Id(payload.id);
     this.name = payload.name;
     this.email = payload.email;
     this.accounts = [];
-    this.createdAt = new Date();
-    this.updatedAt = new Date();
+    this.createdAt = payload.createdAt || new Date();
+    this.updatedAt = payload.createdAt || new Date();
 
     const error = this.validate();
     if (error) {
