@@ -19,4 +19,11 @@ describe('[Value-Object] Id', () => {
     const id2 = new Id();
     expect(id1.value).not.toBe(id2.value);
   });
+
+  it('should return value if passed value ', () => {
+    const input = 'any_value';
+
+    const id = new Id(input);
+    expect(id.value).toBe(input);
+  });
 });
