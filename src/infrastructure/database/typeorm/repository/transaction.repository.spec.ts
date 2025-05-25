@@ -31,7 +31,9 @@ describe('[Repository] TransactionRepository', () => {
 
     await dataSource.query(TransactionTableQuery.CREATE);
 
-    transactionRepository = new TransactionRepository(dataSource);
+    const query = dataSource.createQueryRunner();
+
+    transactionRepository = new TransactionRepository(query);
 
     clientA = new Client({ name: 'Alice', email: 'alice@example.com' });
     clientB = new Client({ name: 'Bob', email: 'bob@example.com' });

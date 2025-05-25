@@ -24,7 +24,9 @@ describe('[Repository] AccountRepository', () => {
 
     await dataSource.query(AccountTableQuery.CREATE);
 
-    accountRepository = new AccountRepository(dataSource);
+    const query = dataSource.createQueryRunner();
+
+    accountRepository = new AccountRepository(query);
 
     client = new Client({ name: 'Bob', email: 'bob@example.com' });
     await dataSource.query(

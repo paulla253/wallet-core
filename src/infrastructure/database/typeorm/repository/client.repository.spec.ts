@@ -19,7 +19,9 @@ describe('[Repository] ClientRepository', () => {
 
     await dataSource.query(ClientTableQuery.CREATE);
 
-    clientRepository = new ClientRepository(dataSource);
+    const query = dataSource.createQueryRunner();
+
+    clientRepository = new ClientRepository(query);
   });
 
   afterAll(async () => {
