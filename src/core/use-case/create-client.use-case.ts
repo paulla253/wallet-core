@@ -4,8 +4,9 @@ import {
   ICreateClientInputDTO,
   ICreateClientOutputDTO,
 } from '../_share/use-case/dto/create-client.dto';
+import { ICreateClientUseCase } from '../_share/use-case/create-client.use-case.interface';
 
-export class CreateClientUseCase {
+export class CreateClientUseCase implements ICreateClientUseCase {
   constructor(private readonly clientRepository: IClientRepository) {}
 
   async execute(input: ICreateClientInputDTO): Promise<ICreateClientOutputDTO> {
