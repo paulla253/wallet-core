@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { CreateClientUseCase } from 'src/core/use-case/create-client.use-case';
 import { DatabaseModule } from './database.module';
-import { DataSource } from 'typeorm';
+import { QueryRunner } from 'typeorm';
 import { ClientController } from 'src/controller/client.controller';
 import { SQLLiteDataSourceToken } from 'src/application/dependency-inversion/token/database.token';
 import {
@@ -14,8 +14,8 @@ import { ClientRepository } from 'src/infrastructure/database/typeorm/repository
   providers: [
     {
       provide: ClientRepositoryToken,
-      useFactory: (dataSource: DataSource) => {
-        return new ClientRepository(dataSource);
+      useFactory: (queryRunner: QueryRunner) => {
+        return new ClientRepository(queryRunner);
       },
       inject: [SQLLiteDataSourceToken],
     },

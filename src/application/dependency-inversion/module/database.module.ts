@@ -13,7 +13,7 @@ import { DataSource } from 'typeorm';
           synchronize: true,
         });
         await dataSource.initialize();
-        return dataSource;
+        return dataSource.createQueryRunner();
       },
     },
   ],

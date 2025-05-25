@@ -1,13 +1,13 @@
 import { IAccountRepository } from '../../../../core/_share/repository/account.repository.interface';
 import { Account } from '../../../../core/entity/account.entity';
 import { Client } from '../../../../core/entity/client.entity';
-import { DataSource } from 'typeorm';
+import { QueryRunner } from 'typeorm';
 
 export class AccountRepository implements IAccountRepository {
-  constructor(private dataSource: DataSource) {}
+  constructor(private queryRunner: QueryRunner) {}
 
   async findById(id: string): Promise<Account | null> {
-    const result = await this.dataSource.query(
+    const result = await this.queryRunner.query(
       `SELECT 
         a.id AS account_id,
         a.client_id,
@@ -43,7 +43,7 @@ export class AccountRepository implements IAccountRepository {
   }
 
   async save(account: Account): Promise<void> {
-    await this.dataSource.query(
+    await this.queryRunner.query(
       `INSERT INTO accounts (id, client_id, balance, created_at,updated_at) VALUES (?, ?, ?, ?, ?)`,
       [
         account.value.id,
@@ -56,7 +56,7 @@ export class AccountRepository implements IAccountRepository {
   }
 
   async updateBalance(account: Account): Promise<void> {
-    await this.dataSource.query(
+    await this.queryRunner.query(
       `UPDATE accounts SET balance = ? WHERE id = ?`,
       [account.value.balance, account.value.id],
     );

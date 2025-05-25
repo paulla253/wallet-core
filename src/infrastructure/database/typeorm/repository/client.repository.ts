@@ -1,12 +1,12 @@
 import { IClientRepository } from '../../../../core/_share/repository/client.repository.interface';
 import { Client } from '../../../../core/entity/client.entity';
-import { DataSource } from 'typeorm';
+import { QueryRunner } from 'typeorm';
 
 export class ClientRepository implements IClientRepository {
-  constructor(private readonly dataSource: DataSource) {}
+  constructor(private readonly queryRunner: QueryRunner) {}
 
   async get(id: string): Promise<Client | null> {
-    const result = await this.dataSource.query(
+    const result = await this.queryRunner.query(
       'SELECT id, name, email, created_at, updated_at FROM clients WHERE id = ?',
       [id],
     );
@@ -28,7 +28,7 @@ export class ClientRepository implements IClientRepository {
   }
 
   async save(client: Client): Promise<void> {
-    await this.dataSource.query(
+    await this.queryRunner.query(
       'INSERT INTO clients (id, name, email, created_at, updated_at) VALUES (?, ?, ?, ?,?)',
       [
         client.value.id,
