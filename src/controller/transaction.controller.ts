@@ -1,15 +1,26 @@
-import { Controller, Post } from '@nestjs/common';
+import { Body, Controller, Inject, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { CreateTransactionUseCaseToken } from 'src/application/dependency-inversion/token/transaction.token';
+import { ICreateTransactionUseCase } from 'src/core/_share/use-case/create-transaction.use-case.interface';
+import { CreateTransactionRequestDTO } from './dto/create-transaction.dto';
 
 @ApiTags('transaction')
 @Controller('/transaction')
 export class TransactionController {
-  constructor() {}
+  constructor(
+    @Inject(CreateTransactionUseCaseToken)
+    private readonly createTransaction: ICreateTransactionUseCase,
+  ) {}
 
   @Post()
-  async save(): Promise<any> {
-    //await this.createClientUseCase.execute();
+  async create(@Body() payload: CreateTransactionRequestDTO): Promise<any> {
+    const output = await this.createTransaction.execute(payload);
 
-    return 'ok';
+    return {
+      id: output.id,
+      accountIdFrom: output.accountIdFrom,
+      accountIdTo: output.accountIdTo,
+      amount: output.amount,
+    };
   }
 }
