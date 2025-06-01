@@ -4,6 +4,14 @@ import { ICreateClientUseCase } from 'src/core/_share/use-case/create-client.use
 import { CreateClientRequestDTO } from './dto/create-client.dto';
 import { ApiTags } from '@nestjs/swagger';
 
+export type TClientResponse = {
+  id: string;
+  name: string;
+  email: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
 @ApiTags('client')
 @Controller('/client')
 export class ClientController {
@@ -13,11 +21,17 @@ export class ClientController {
   ) {}
 
   @Post()
-  async create(@Body() payload: CreateClientRequestDTO): Promise<any> {
+  async create(
+    @Body() payload: CreateClientRequestDTO,
+  ): Promise<TClientResponse> {
     const output = await this.createClientUseCase.execute(payload);
 
-    console.log(output);
-
-    return 'ok';
+    return {
+      id: output.id,
+      name: output.name,
+      email: output.email,
+      createdAt: output.createdAt,
+      updatedAt: output.updatedAt,
+    };
   }
 }

@@ -4,6 +4,10 @@ import { CreateAccountUseCaseToken } from 'src/application/dependency-inversion/
 import { ICreateAccountUseCase } from 'src/core/_share/use-case/create-account.use-case.interface';
 import { CreateAccountRequestDTO } from './dto/create-account.dto';
 
+export type TAccountResponse = {
+  id: string;
+};
+
 @ApiTags('account')
 @Controller('/account')
 export class AccountController {
@@ -13,9 +17,13 @@ export class AccountController {
   ) {}
 
   @Post()
-  async create(@Body() payload: CreateAccountRequestDTO): Promise<any> {
-    await this.createAccountUseCase.execute(payload);
+  async create(
+    @Body() payload: CreateAccountRequestDTO,
+  ): Promise<TAccountResponse> {
+    const output = await this.createAccountUseCase.execute(payload);
 
-    return 'ok';
+    return {
+      id: output.id,
+    };
   }
 }
