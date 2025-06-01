@@ -36,7 +36,7 @@ export class AccountRepository implements IAccountRepository {
       updatedAt: row.client_updated_at,
     });
 
-    const account = new Account(client);
+    const account = new Account(client, row.account_id);
     account.credit(row.balance);
 
     return account;
@@ -57,7 +57,7 @@ export class AccountRepository implements IAccountRepository {
 
   async updateBalance(account: Account): Promise<void> {
     await this.queryRunner.query(
-      `UPDATE accounts SET balance = ? WHERE id = ?`,
+      `UPDATE accounts SET balance = ? WHERE id = ?;`,
       [account.value.balance, account.value.id],
     );
   }
