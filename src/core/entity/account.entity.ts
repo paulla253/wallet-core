@@ -18,12 +18,12 @@ export class Account {
   private createdAt: Date;
   private updatedAt: Date;
 
-  constructor(client: Client) {
+  constructor(client: Client, id?: string) {
     if (!client) {
       throw new Error('Client is required');
     }
 
-    this.id = new Id();
+    this.id = new Id(id);
     this.client = client;
     this.clientId = client.value.id;
     this.balance = 0;
