@@ -11,19 +11,11 @@ export class TransactionUnitOfWork implements ITransactionUnitOfWork {
   ) {}
 
   async start(): Promise<void> {
-    if (this.queryRunner) {
-      throw new Error('UnitOfWork já foi iniciado.');
-    }
-
     await this.queryRunner.connect();
     await this.queryRunner.startTransaction();
   }
 
   async complete(): Promise<void> {
-    if (!this.queryRunner) {
-      throw new Error('QueryRunner não foi iniciado.');
-    }
-
     try {
       await this.queryRunner.commitTransaction();
     } catch (error) {
@@ -35,10 +27,6 @@ export class TransactionUnitOfWork implements ITransactionUnitOfWork {
   }
 
   async rollback(): Promise<void> {
-    if (!this.queryRunner) {
-      return;
-    }
-
     try {
       await this.queryRunner.rollbackTransaction();
     } catch (error) {
@@ -54,8 +42,6 @@ export class TransactionUnitOfWork implements ITransactionUnitOfWork {
         await this.queryRunner.release();
       } catch (error) {
         console.error('Erro ao liberar o QueryRunner:', error);
-      } finally {
-        this.queryRunner = null;
       }
     }
   }
