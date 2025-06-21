@@ -14,7 +14,7 @@ import { IAccountRepository } from 'src/core/_share/repository/account.repositor
 import { ITransactionRepository } from 'src/core/_share/repository/transaction.repository.interface';
 import { AccountRepository } from 'src/infrastructure/database/typeorm/repository/account.repository';
 import { AccountRepositoryToken } from '../token/account.token';
-import { SQLLiteDataSourceToken } from '../token/database.token';
+import { MYSQLDataSourceToken } from '../token/database.token';
 import { TransactionRepository } from 'src/infrastructure/database/typeorm/repository/transaction.repository';
 
 @Module({
@@ -24,14 +24,14 @@ import { TransactionRepository } from 'src/infrastructure/database/typeorm/repos
       useFactory: (queryRunner: QueryRunner) => {
         return new TransactionRepository(queryRunner);
       },
-      inject: [SQLLiteDataSourceToken],
+      inject: [MYSQLDataSourceToken],
     },
     {
       provide: AccountRepositoryToken,
       useFactory: (queryRunner: QueryRunner) => {
         return new AccountRepository(queryRunner);
       },
-      inject: [SQLLiteDataSourceToken],
+      inject: [MYSQLDataSourceToken],
     },
     {
       provide: TransactionUnitOfWorkToken,
@@ -47,7 +47,7 @@ import { TransactionRepository } from 'src/infrastructure/database/typeorm/repos
         );
       },
       inject: [
-        SQLLiteDataSourceToken,
+        MYSQLDataSourceToken,
         AccountRepositoryToken,
         TransactionRepositoryToken,
       ],

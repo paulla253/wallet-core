@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from './database.module';
 import { QueryRunner } from 'typeorm';
-import { SQLLiteDataSourceToken } from 'src/application/dependency-inversion/token/database.token';
+import { MYSQLDataSourceToken } from 'src/application/dependency-inversion/token/database.token';
 import { ClientRepositoryToken } from 'src/application/dependency-inversion/token/client.token';
 import { AccountController } from 'src/controller/account.controller';
 import {
@@ -19,14 +19,14 @@ import { AccountRepository } from 'src/infrastructure/database/typeorm/repositor
       useFactory: (queryRunner: QueryRunner) => {
         return new ClientRepository(queryRunner);
       },
-      inject: [SQLLiteDataSourceToken],
+      inject: [MYSQLDataSourceToken],
     },
     {
       provide: AccountRepositoryToken,
       useFactory: (queryRunner: QueryRunner) => {
         return new AccountRepository(queryRunner);
       },
-      inject: [SQLLiteDataSourceToken],
+      inject: [MYSQLDataSourceToken],
     },
     {
       provide: CreateAccountUseCaseToken,

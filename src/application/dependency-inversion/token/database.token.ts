@@ -1,3 +1,3 @@
-export const SQLLiteDataSourceToken: unique symbol = Symbol(
-  'SQLLiteDataSourceToken',
+export const MYSQLDataSourceToken: unique symbol = Symbol(
+  'MYSQLDataSourceToken',
 );

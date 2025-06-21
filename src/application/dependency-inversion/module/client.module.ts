@@ -3,7 +3,7 @@ import { CreateClientUseCase } from 'src/core/use-case/create-client.use-case';
 import { DatabaseModule } from './database.module';
 import { QueryRunner } from 'typeorm';
 import { ClientController } from 'src/controller/client.controller';
-import { SQLLiteDataSourceToken } from 'src/application/dependency-inversion/token/database.token';
+import { MYSQLDataSourceToken } from 'src/application/dependency-inversion/token/database.token';
 import {
   ClientRepositoryToken,
   CreateClientUseCaseToken,
@@ -17,7 +17,7 @@ import { ClientRepository } from 'src/infrastructure/database/typeorm/repository
       useFactory: (queryRunner: QueryRunner) => {
         return new ClientRepository(queryRunner);
       },
-      inject: [SQLLiteDataSourceToken],
+      inject: [MYSQLDataSourceToken],
     },
     {
       provide: CreateClientUseCaseToken,
