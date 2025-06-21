@@ -1,0 +1,51 @@
+version: '3.1'
+services:
+  app:
+    image: node:18.13.0-alpine
+    user: node
+    working_dir: /app
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    ports:
+      - '3000:3000'
+    command: sh -c "npm install && npm run start:dev"
+    depends_on:
+      - mysql_dev
+      - migrate
+    networks:
+      - net-dev
+  mysql_dev:
+    container_name: 'database'
+    image: mysql:8.0
+    env_file:
+      - .env
+    ports:
+      - '${MYSQL_PORT}:3306'
+    restart: unless-stopped
+    volumes:
+      - database:/var/lib/mysql
+    networks:
+      - net-dev
+
+  migrate:
+    image: node:18.13.0-alpine
+    user: node
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: sh -c "npm install && npm run migration"
+    env_file:
+      - .env
+    depends_on:
+      - mysql_dev
+    networks:
+      - net-dev
+
+volumes:
+  database:
+
+networks:
+  net-dev:
+    driver: bridge
