@@ -2,13 +2,16 @@ import { DataSource } from 'typeorm';
 import ClientTableQuery from '../../query/client.query';
 import AccountTableQuery from '../../query/account.query';
 import TransactionTableQuery from '../../query/transaction.query ';
+import DatabaseConfig from '../../../../infrastructure/config/database.config';
 
 async function initialize(): Promise<DataSource> {
   const dataSource = new DataSource({
-    type: 'sqlite',
-    database: ':memory:',
-    synchronize: true,
-    logger: 'debug',
+    type: 'mysql',
+    host: DatabaseConfig.MYSQL_HOST,
+    database: DatabaseConfig.MYSQL_DATABASE,
+    username: DatabaseConfig.MYSQL_USER,
+    password: DatabaseConfig.MYSQL_PASSWORD,
+    port: 3306,
   });
   await dataSource.initialize();
 

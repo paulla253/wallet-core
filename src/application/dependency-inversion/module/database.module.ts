@@ -1,22 +1,28 @@
 import { Module } from '@nestjs/common';
-import { SQLLiteDataSourceToken } from 'src/application/dependency-inversion/token/database.token';
+import { MYSQLDataSourceToken } from 'src/application/dependency-inversion/token/database.token';
+import DatabaseConfig from 'src/infrastructure/config/database.config';
 import { DataSource } from 'typeorm';
 
 @Module({
   providers: [
     {
-      provide: SQLLiteDataSourceToken,
+      provide: MYSQLDataSourceToken,
       useFactory: async () => {
         const dataSource = new DataSource({
-          type: 'sqlite',
-          database: 'database.sqlite',
-          synchronize: true,
+          type: 'mysql',
+          host: DatabaseConfig.MYSQL_HOST,
+          database: DatabaseConfig.MYSQL_DATABASE,
+          username: DatabaseConfig.MYSQL_USER,
+          password: DatabaseConfig.MYSQL_PASSWORD,
+          port: 3306,
         });
+
         await dataSource.initialize();
+
         return dataSource.createQueryRunner();
       },
     },
   ],
-  exports: [SQLLiteDataSourceToken],
+  exports: [MYSQLDataSourceToken],
 })
 export class DatabaseModule {}
