@@ -14,7 +14,7 @@ import { DataSource } from 'typeorm';
           database: DatabaseConfig.MYSQL_DATABASE,
           username: DatabaseConfig.MYSQL_USER,
           password: DatabaseConfig.MYSQL_PASSWORD,
-          port: 3306,
+          port: DatabaseConfig.MYSQL_PORT,
         });
 
         await dataSource.initialize();
