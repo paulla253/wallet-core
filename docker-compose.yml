@@ -15,7 +15,6 @@ services:
     command: sh -c "npm install && npm run start:dev"
     depends_on:
       - mysql_dev
-      - migrate
     networks:
       - net-dev
   mysql_dev:
@@ -28,22 +27,6 @@ services:
     restart: unless-stopped
     volumes:
       - database:/var/lib/mysql
-    networks:
-      - net-dev
-
-  migrate:
-    image: node:18.13.0-alpine
-    user: node
-    working_dir: /app
-    volumes:
-      - .:/app
-    command: sh -c "npm install && npm run migration"
-    env_file:
-      - .env
-    environment:
-      MYSQL_PORT: 3306
-    depends_on:
-      - mysql_dev
     networks:
       - net-dev
 
