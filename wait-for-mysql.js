@@ -1,4 +1,3 @@
-const readline = require('readline');
 const mysql = require('mysql2');
 
 process.stdout.write(`Initializing MySQL Connection...\n`);
@@ -18,12 +17,8 @@ function createMysqlConnection() {
 }
 
 function tryMysqlConnection() {
-  readline.clearLine(process.stdout, 0);
-  readline.cursorTo(process.stdout, 0);
-
   const connection = createMysqlConnection();
   connection.on('error', function (err) {
-    console.log(err);
     tryMysqlConnection();
   });
 
