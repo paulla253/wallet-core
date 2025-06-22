@@ -24,7 +24,10 @@ async function createMigration(dataSource: DataSource) {
   await dataSource.query(TransactionTableQuery.CREATE);
 }
 
-//async function createSeeds(dataSource: DataSource) {}
+async function createSeeds(dataSource: DataSource) {
+  await dataSource.query(ClientTableQuery.INSERT);
+  await dataSource.query(AccountTableQuery.INSERT);
+}
 
 async function execute() {
   console.log('Starting database..');
@@ -33,7 +36,7 @@ async function execute() {
   await dataSource.synchronize(true);
   await createMigration(dataSource);
   console.log('Creating seeds into database..');
-  // await createSeeds(dataSource);
+  await createSeeds(dataSource);
   console.log('Closing connection database..');
   await dataSource.destroy();
 }

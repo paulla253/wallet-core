@@ -11,5 +11,7 @@ export default class AccountTableQuery {
   static DROP = `
     DROP TABLE IF EXISTS accounts;`;
 
-  static INSERT = ``;
+  static INSERT = `INSERT INTO wallet.accounts (id, client_id, balance, created_at, updated_at) VALUES
+  ('7d356b49-649c-42f8-a5fc-0967e3073b03', '7d356b49-649c-42f8-a5fc-0967e3073b03', 100, '2025-06-22 10:58:33', '2025-06-22 10:58:33'),
+  ('bff5090d-c260-4f8a-8a86-e24bceda78ac', 'bff5090d-c260-4f8a-8a86-e24bceda78ac', 0.00, '2025-06-22 10:58:33', '2025-06-22 10:58:33');`;
 }
