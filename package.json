@@ -7,11 +7,11 @@
   "license": "UNLICENSED",
   "scripts": {
     "wait:mysql": "ts-node wait-for-mysql.js",
-    "migration": "npm run wait:mysql && ts-node ./src/infrastructure/database/typeorm/migration/migration.ts",
+    "migration": "ts-node ./src/infrastructure/database/typeorm/migration/migration.ts",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
-    "start:dev": "npm run wait:mysql && nest start --watch",
+    "start:dev": "npm run wait:mysql && npm run migration && nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
