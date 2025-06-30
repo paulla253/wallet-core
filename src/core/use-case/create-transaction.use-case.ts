@@ -4,14 +4,13 @@ import {
   ICreateTransactionOutputDTO,
 } from '../_share/use-case/dto/create-transaction.dto';
 import { Transaction } from '../entity/transaction.entity';
+import { EEvent, IEventDispatcher } from '../event/event-dispatcher.interface';
 import { ITransactionUnitOfWork } from '../unit-of-work/transaction.uow-interface';
 
 export class CreateTransactionUseCase implements ICreateTransactionUseCase {
   constructor(
     private readonly uow: ITransactionUnitOfWork,
-    //private readonly eventDispatcher: EventDispatcherInterface,
-    //private readonly transactionCreated: EventInterface,
-    //private readonly balanceUpdated: EventInterface,
+    private readonly eventDispatcher: IEventDispatcher,
   ) {}
 
   async execute(
@@ -37,34 +36,39 @@ export class CreateTransactionUseCase implements ICreateTransactionUseCase {
     try {
       await this.uow.start();
 
-      //balanceUpdatedOutput = {
-      //  accountIdFrom: input.accountIdFrom,
-      //  accountIdTo: input.accountIdTo,
-      //  balanceAccountIdFrom: accountFrom.balance,
-      //  balanceAccountIdTo: accountTo.balance,
-      //};
-
       await this.uow.accountRepository.updateBalance(accountFrom);
       await this.uow.accountRepository.updateBalance(accountTo);
 
-      //this.balanceUpdated.setPayload(balanceUpdatedOutput);
-      //this.eventDispatcher.dispatch(this.balanceUpdated);
-
       await this.uow.transactionRepository.save(transaction);
-      //this.transactionCreated.setPayload(output);
-      //this.eventDispatcher.dispatch(this.transactionCreated);
 
       await this.uow.complete();
-
-      return {
-        id: transaction.value.id,
-        accountIdFrom: input.accountIdFrom,
-        accountIdTo: input.accountIdTo,
-        amount: input.amount,
-      };
     } catch (error) {
       await this.uow.rollback();
       throw error;
     }
+
+    const balanceUpdatedOutput = {
+      accountIdFrom: input.accountIdFrom,
+      accountIdTo: input.accountIdTo,
+      balanceAccountIdFrom: accountFrom.value,
+      balanceAccountIdTo: accountTo.value,
+    };
+
+    await this.eventDispatcher.send({
+      event: EEvent.UPDATE_BALANCE,
+      payload: balanceUpdatedOutput,
+    });
+
+    await this.eventDispatcher.send({
+      event: EEvent.TRANSACTION,
+      payload: transaction,
+    });
+
+    return {
+      id: transaction.value.id,
+      accountIdFrom: input.accountIdFrom,
+      accountIdTo: input.accountIdTo,
+      amount: input.amount,
+    };
   }
 }
