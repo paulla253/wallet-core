@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './application/dependency-inversion/module/main.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { KafkaOptions, Transport } from '@nestjs/microservices';
-import KafkaConfiguration from './infrastructure/config/kafka.config';
+import KafkaConfig from './infrastructure/config/kafka.config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -11,8 +11,8 @@ async function bootstrap() {
     transport: Transport.KAFKA,
     options: {
       client: {
-        clientId: KafkaConfiguration.CLIENT_ID,
-        brokers: [KafkaConfiguration.BROKER_URL],
+        clientId: KafkaConfig.CLIENT_ID,
+        brokers: [KafkaConfig.BROKER_URL],
         retry: {
           retries: 30,
           initialRetryTime: 10000,
