@@ -16,6 +16,9 @@ import { AccountRepository } from 'src/infrastructure/database/typeorm/repositor
 import { AccountRepositoryToken } from '../token/account.token';
 import { MYSQLDataSourceToken } from '../token/database.token';
 import { TransactionRepository } from 'src/infrastructure/database/typeorm/repository/transaction.repository';
+import { EventDispatcherModule } from './event-dispatcher.module';
+import { IEventDispatcher } from 'src/core/event/event-dispatcher.interface';
+import { EventDispatcherToken } from '../token/event-dispatcher.token';
 
 @Module({
   providers: [
@@ -52,17 +55,16 @@ import { TransactionRepository } from 'src/infrastructure/database/typeorm/repos
         TransactionRepositoryToken,
       ],
     },
-
     {
       provide: CreateTransactionUseCaseToken,
-      useFactory: (uow: ITransactionUnitOfWork) => {
-        return new CreateTransactionUseCase(uow);
+      useFactory: (uow: ITransactionUnitOfWork, event: IEventDispatcher) => {
+        return new CreateTransactionUseCase(uow, event);
       },
-      inject: [TransactionUnitOfWorkToken],
+      inject: [TransactionUnitOfWorkToken, EventDispatcherToken],
     },
   ],
   exports: [],
-  imports: [DatabaseModule],
+  imports: [DatabaseModule, EventDispatcherModule],
   controllers: [TransactionController],
 })
 export class TransactionModule {}
