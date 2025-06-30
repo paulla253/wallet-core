@@ -1,6 +1,6 @@
 import { Body, Controller, Inject, Post } from '@nestjs/common';
-import { CreateClientUseCaseToken } from 'src/application/dependency-inversion/token/client.token';
-import { ICreateClientUseCase } from 'src/core/_share/use-case/create-client.use-case.interface';
+import { CreateClientUseCaseToken } from '../../src/application/dependency-inversion/token/client.token';
+import { ICreateClientUseCase } from '../../src/core/_share/use-case/create-client.use-case.interface';
 import { CreateClientRequestDTO } from './dto/create-client.dto';
 import { ApiTags } from '@nestjs/swagger';
 
