@@ -7,7 +7,6 @@ import {
   TransactionRepositoryToken,
   TransactionUnitOfWorkToken,
 } from '../token/transaction.token';
-import { ITransactionUnitOfWork } from 'src/core/unit-of-work/transaction.uow-interface';
 import { TransactionUnitOfWork } from 'src/infrastructure/unit-of-work/transaction.uow';
 import { QueryRunner } from 'typeorm';
 import { IAccountRepository } from 'src/core/_share/repository/account.repository.interface';
@@ -19,6 +18,7 @@ import { TransactionRepository } from 'src/infrastructure/database/typeorm/repos
 import { EventDispatcherModule } from './event-dispatcher.module';
 import { IEventDispatcher } from 'src/core/event/event-dispatcher.interface';
 import { EventDispatcherToken } from '../token/event-dispatcher.token';
+import { ITransactionUnitOfWork } from 'src/core/unit-of-work/transaction-uow.interface';
 
 @Module({
   providers: [
