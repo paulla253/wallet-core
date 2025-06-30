@@ -1,7 +1,7 @@
 import { DataSource } from 'typeorm';
 import { ClientRepository } from './client.repository';
 import { Client } from '../../../../core/entity/client.entity';
-import ClientTableQuery from '../../query/client.query';
+import ClientTable from '../migration/table/client.table';
 
 describe('[Repository] ClientRepository', () => {
   let dataSource: DataSource;
@@ -17,7 +17,7 @@ describe('[Repository] ClientRepository', () => {
 
     await dataSource.initialize();
 
-    await dataSource.query(ClientTableQuery.CREATE);
+    await dataSource.query(ClientTable.CREATE);
 
     const query = dataSource.createQueryRunner();
 

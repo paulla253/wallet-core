@@ -2,8 +2,8 @@ import { DataSource } from 'typeorm';
 import { AccountRepository } from './account.repository';
 import { Client } from '../../../../core/entity/client.entity';
 import { Account } from '../../../../core/entity/account.entity';
-import AccountTableQuery from '../../query/account.query';
-import ClientTableQuery from '../../query/client.query';
+import AccountTable from '../migration/table/account.table';
+import ClientTable from '../migration/table/client.table';
 
 describe('[Repository] AccountRepository', () => {
   let dataSource: DataSource;
@@ -20,9 +20,9 @@ describe('[Repository] AccountRepository', () => {
 
     await dataSource.initialize();
 
-    await dataSource.query(ClientTableQuery.CREATE);
+    await dataSource.query(ClientTable.CREATE);
 
-    await dataSource.query(AccountTableQuery.CREATE);
+    await dataSource.query(AccountTable.CREATE);
 
     const query = dataSource.createQueryRunner();
 

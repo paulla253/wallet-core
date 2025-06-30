@@ -3,9 +3,9 @@ import { TransactionRepository } from './transaction.repository';
 import { Transaction } from '../../../../core/entity/transaction.entity';
 import { Account } from '../../../../core/entity/account.entity';
 import { Client } from '../../../../core/entity/client.entity';
-import ClientTableQuery from '../../query/client.query';
-import AccountTableQuery from '../../query/account.query';
-import TransactionTableQuery from '../../query/transaction.query ';
+import ClientTable from '../migration/table/client.table';
+import AccountTable from '../migration/table/account.table';
+import TransactionTable from '../migration/table/transaction.table';
 
 describe('[Repository] TransactionRepository', () => {
   let dataSource: DataSource;
@@ -25,11 +25,11 @@ describe('[Repository] TransactionRepository', () => {
 
     await dataSource.initialize();
 
-    await dataSource.query(ClientTableQuery.CREATE);
+    await dataSource.query(ClientTable.CREATE);
 
-    await dataSource.query(AccountTableQuery.CREATE);
+    await dataSource.query(AccountTable.CREATE);
 
-    await dataSource.query(TransactionTableQuery.CREATE);
+    await dataSource.query(TransactionTable.CREATE);
 
     const query = dataSource.createQueryRunner();
 

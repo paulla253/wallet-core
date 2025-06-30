@@ -1,4 +1,4 @@
-export default class AccountTableQuery {
+export default class AccountTable {
   static CREATE = `
     CREATE TABLE accounts (
       id VARCHAR(36) PRIMARY KEY,

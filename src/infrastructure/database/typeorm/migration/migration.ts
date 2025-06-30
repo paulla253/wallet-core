@@ -1,7 +1,7 @@
 import { DataSource } from 'typeorm';
-import ClientTableQuery from '../../query/client.query';
-import AccountTableQuery from '../../query/account.query';
-import TransactionTableQuery from '../../query/transaction.query ';
+import ClientTable from './table/client.table';
+import AccountTable from './table/account.table';
+import TransactionTable from './table/transaction.table';
 import DatabaseConfig from '../../../../infrastructure/config/database.config';
 
 async function initialize(): Promise<DataSource> {
@@ -19,14 +19,14 @@ async function initialize(): Promise<DataSource> {
 }
 
 async function createMigration(dataSource: DataSource) {
-  await dataSource.query(ClientTableQuery.CREATE);
-  await dataSource.query(AccountTableQuery.CREATE);
-  await dataSource.query(TransactionTableQuery.CREATE);
+  await dataSource.query(ClientTable.CREATE);
+  await dataSource.query(AccountTable.CREATE);
+  await dataSource.query(TransactionTable.CREATE);
 }
 
 async function createSeeds(dataSource: DataSource) {
-  await dataSource.query(ClientTableQuery.INSERT);
-  await dataSource.query(AccountTableQuery.INSERT);
+  await dataSource.query(ClientTable.INSERT);
+  await dataSource.query(AccountTable.INSERT);
 }
 
 async function execute() {

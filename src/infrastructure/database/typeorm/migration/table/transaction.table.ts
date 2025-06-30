@@ -1,4 +1,4 @@
-export default class TransactionTableQuery {
+export default class TransactionTable {
   static CREATE = `
     CREATE TABLE transactions (
       id VARCHAR(36) PRIMARY KEY,

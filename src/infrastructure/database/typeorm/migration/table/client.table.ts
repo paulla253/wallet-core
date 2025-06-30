@@ -1,4 +1,4 @@
-export default class ClientTableQuery {
+export default class ClientTable {
   static CREATE = `
     CREATE TABLE clients(
       id VARCHAR(36) PRIMARY KEY,
