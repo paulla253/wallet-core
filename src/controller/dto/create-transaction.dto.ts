@@ -11,7 +11,7 @@ export class CreateTransactionRequestDTO {
     example: '855ce48d-e03c-40d4-b677-edd19d25f584',
     description: 'Id da conta de destino',
   })
-  accountIdTo;
+  accountIdTo: string;
 
   @ApiProperty({
     example: 100,
