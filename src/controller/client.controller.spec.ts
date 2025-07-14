@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ClientController } from './client.controller';
-import { CreateClientUseCaseToken } from '../../src/application/dependency-inversion/token/client.token';
+import { CreateClientUseCaseToken } from '../application/dependency-inversion/token/client.token';
 import { CreateClientRequestDTO } from './dto/create-client.dto';
-import { ICreateClientUseCase } from '../../src/core/_share/use-case/create-client.use-case.interface';
+import { ICreateClientUseCase } from '../core/_share/use-case/create-client.use-case.interface';
 
 describe('[Controller] ClientController', () => {
   let controller: ClientController;

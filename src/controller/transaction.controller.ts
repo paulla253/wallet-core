@@ -1,7 +1,7 @@
 import { Body, Controller, Inject, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { CreateTransactionUseCaseToken } from '../../src/application/dependency-inversion/token/transaction.token';
-import { ICreateTransactionUseCase } from '../../src/core/_share/use-case/create-transaction.use-case.interface';
+import { CreateTransactionUseCaseToken } from '../application/dependency-inversion/token/transaction.token';
+import { ICreateTransactionUseCase } from '../core/_share/use-case/create-transaction.use-case.interface';
 import { CreateTransactionRequestDTO } from './dto/create-transaction.dto';
 
 @ApiTags('transaction')

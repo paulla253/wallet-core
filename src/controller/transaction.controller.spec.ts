@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { TransactionController } from './transaction.controller';
-import { CreateTransactionUseCaseToken } from '../../src/application/dependency-inversion/token/transaction.token';
-import { ICreateTransactionUseCase } from '../../src/core/_share/use-case/create-transaction.use-case.interface';
+import { CreateTransactionUseCaseToken } from '../application/dependency-inversion/token/transaction.token';
+import { ICreateTransactionUseCase } from '../core/_share/use-case/create-transaction.use-case.interface';
 import { CreateTransactionRequestDTO } from './dto/create-transaction.dto';
 
 describe('[Controller] TransactionController', () => {
