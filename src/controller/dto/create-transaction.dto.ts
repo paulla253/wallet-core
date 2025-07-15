@@ -2,19 +2,19 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateTransactionRequestDTO {
   @ApiProperty({
-    example: '855ce48d-e03c-40d4-b677-edd19d25f584',
+    example: '7d356b49-649c-42f8-a5fc-0967e3073b03',
     description: 'Id da conta de origem',
   })
   accountIdFrom: string;
 
   @ApiProperty({
-    example: '855ce48d-e03c-40d4-b677-edd19d25f584',
+    example: 'bff5090d-c260-4f8a-8a86-e24bceda78ac',
     description: 'Id da conta de destino',
   })
   accountIdTo: string;
 
   @ApiProperty({
-    example: 100,
+    example: 10,
     description: 'Valor para transferencia',
   })
   amount: number;

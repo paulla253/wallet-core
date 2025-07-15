@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateAccountRequestDTO {
   @ApiProperty({
-    example: 'aebea8b6-d246-4ff6-af61-41309c3c6322',
+    example: '596f85c7-200b-4598-a928-9ac62f1a62fe',
     description: 'Id do cliente',
   })
   clientId: string;
