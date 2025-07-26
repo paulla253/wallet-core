@@ -19,7 +19,7 @@ Requisitos para entrega:
 ```bash
 NODE_ENV=tst
 
-PORT=3000
+PORT=3003
 
 # configuracao do banco de dados
 MYSQL_HOST=mysql_dev
@@ -43,6 +43,8 @@ UPDATE_BALANCE_TOPIC=updateBalance
 # development
 docker compose up
 ```
+
+Terá uma documentação simples no http://localhost:3003/documentation
 
 ## Test
 
