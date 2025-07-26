@@ -7,7 +7,7 @@ import {
   TransactionRepositoryToken,
   TransactionUnitOfWorkToken,
 } from '../token/transaction.token';
-import { TransactionUnitOfWork } from 'src/infrastructure/unit-of-work/transaction.uow';
+import { TransactionUnitOfWork } from 'src/infrastructure/database/typeorm/unit-of-work/transaction.uow';
 import { QueryRunner } from 'typeorm';
 import { IAccountRepository } from 'src/core/_share/repository/account.repository.interface';
 import { ITransactionRepository } from 'src/core/_share/repository/transaction.repository.interface';
@@ -16,9 +16,9 @@ import { AccountRepositoryToken } from '../token/account.token';
 import { MYSQLDataSourceToken } from '../token/database.token';
 import { TransactionRepository } from 'src/infrastructure/database/typeorm/repository/transaction.repository';
 import { EventDispatcherModule } from './event-dispatcher.module';
-import { IEventDispatcher } from 'src/core/event/event-dispatcher.interface';
+import { IEventDispatcher } from 'src/core/_share/event/event-dispatcher.interface';
 import { EventDispatcherToken } from '../token/event-dispatcher.token';
-import { ITransactionUnitOfWork } from 'src/core/unit-of-work/transaction-uow.interface';
+import { ITransactionUnitOfWork } from 'src/core/_share/unit-of-work/transaction-uow.interface';
 
 @Module({
   providers: [

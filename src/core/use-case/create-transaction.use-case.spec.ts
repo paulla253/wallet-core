@@ -1,5 +1,8 @@
-import { ITransactionUnitOfWork } from '../unit-of-work/transaction-uow.interface';
-import { IEventDispatcher, EEvent } from '../event/event-dispatcher.interface';
+import { ITransactionUnitOfWork } from '../_share/unit-of-work/transaction-uow.interface';
+import {
+  IEventDispatcher,
+  EEvent,
+} from '../_share/event/event-dispatcher.interface';
 import { Transaction } from '../entity/transaction.entity';
 import { CreateTransactionUseCase } from './create-transaction.use-case';
 import { Account } from '../entity/account.entity';

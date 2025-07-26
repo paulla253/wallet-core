@@ -2,7 +2,7 @@ import {
   EEvent,
   IEventDispatcher,
   TOutputEvent,
-} from 'src/core/event/event-dispatcher.interface';
+} from 'src/core/_share/event/event-dispatcher.interface';
 import KafkaConfig from '../config/kafka.config';
 import { Kafka, Partitioners, Producer } from 'kafkajs';
 

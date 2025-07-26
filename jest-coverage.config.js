@@ -15,8 +15,8 @@ module.exports = {
     '!./src/**/infrastructure/config/**',
     '!./src/core/**/**.interface.ts',
     '!./src/infrastructure/event/**',
-    '!./src/infrastructure/unit-of-work/**',
-    '!./src/infrastructure/database/**/migration/*.ts',
+    '!./src/infrastructure/database/typeorm/unit-of-work/**',
+    '!./src/infrastructure/database/typeorm/**/migration/*.ts',
   ],
 
   coverageThreshold: {

@@ -4,8 +4,11 @@ import {
   ICreateTransactionOutputDTO,
 } from '../_share/use-case/dto/create-transaction.dto';
 import { Transaction } from '../entity/transaction.entity';
-import { EEvent, IEventDispatcher } from '../event/event-dispatcher.interface';
-import { ITransactionUnitOfWork } from '../unit-of-work/transaction-uow.interface';
+import {
+  EEvent,
+  IEventDispatcher,
+} from '../_share/event/event-dispatcher.interface';
+import { ITransactionUnitOfWork } from '../_share/unit-of-work/transaction-uow.interface';
 
 export class CreateTransactionUseCase implements ICreateTransactionUseCase {
   constructor(
