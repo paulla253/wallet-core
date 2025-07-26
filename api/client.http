@@ -1,5 +1,5 @@
 
-POST http://localhost:3000/client HTTP/1.1
+POST http://localhost:3003/client HTTP/1.1
 Content-Type: application/json
 
 {
@@ -9,7 +9,7 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:3000/account HTTP/1.1
+POST http://localhost:3003/account HTTP/1.1
 Content-Type: application/json
 
 {
@@ -18,7 +18,11 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:3000/transaction HTTP/1.1
+GET http://localhost:3003/account/balance/7d356b49-649c-42f8-a5fc-0967e3073b03 HTTP/1.1
+Content-Type: application/json
+###
+
+POST http://localhost:3003/transaction HTTP/1.1
 Content-Type: application/json
 
 {
