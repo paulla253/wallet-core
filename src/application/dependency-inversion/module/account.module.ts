@@ -5,12 +5,14 @@ import { MYSQLDataSourceToken } from 'src/application/dependency-inversion/token
 import { ClientRepositoryToken } from 'src/application/dependency-inversion/token/client.token';
 import { AccountController } from 'src/controller/account.controller';
 import {
+  AccountBalanceUseCaseToken,
   AccountRepositoryToken,
   CreateAccountUseCaseToken,
 } from 'src/application/dependency-inversion/token/account.token';
 import { CreateAccountUseCase } from 'src/core/use-case/create-account.use-case';
 import { ClientRepository } from 'src/infrastructure/database/typeorm/repository/client.repository';
 import { AccountRepository } from 'src/infrastructure/database/typeorm/repository/account.repository';
+import { AccountBalanceUseCase } from 'src/core/use-case/account-balance.use-case';
 
 @Module({
   providers: [
@@ -37,6 +39,13 @@ import { AccountRepository } from 'src/infrastructure/database/typeorm/repositor
         return new CreateAccountUseCase(accountRepository, clientRepository);
       },
       inject: [AccountRepositoryToken, ClientRepositoryToken],
+    },
+    {
+      provide: AccountBalanceUseCaseToken,
+      useFactory: (accountRepository: AccountRepository) => {
+        return new AccountBalanceUseCase(accountRepository);
+      },
+      inject: [AccountRepositoryToken],
     },
   ],
   exports: [CreateAccountUseCaseToken],
