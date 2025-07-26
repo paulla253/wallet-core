@@ -33,7 +33,7 @@ export class AccountController {
     };
   }
 
-  @Get(':account_id')
+  @Get('balance/:account_id')
   async balance(@Param('account_id') account_id: string): Promise<any> {
     const output = await this.accountBalanceUseCase.execute({
       accountId: account_id,
