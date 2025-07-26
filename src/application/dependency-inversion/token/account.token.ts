@@ -4,3 +4,7 @@ export const CreateAccountUseCaseToken: unique symbol = Symbol(
 export const AccountRepositoryToken: unique symbol = Symbol(
   'AccountRepositoryToken',
 );
+
+export const AccountBalanceUseCaseToken: unique symbol = Symbol(
+  'AccountBalanceUseCaseToken',
+);
