@@ -37,7 +37,7 @@ export class AccountRepository implements IAccountRepository {
     });
 
     const account = new Account(client, row.account_id);
-    account.credit(row.balance);
+    account.credit(Number(row.balance));
 
     return account;
   }
