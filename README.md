@@ -58,13 +58,13 @@ $ npm run test:cov
 
 ## Descrição da organização dos arquivos
 
-application: contém os arquivos de token e modulos utilizados pelo nestjs.
-api/controller: arquivos de controller e os dtos com decorações para o swagger
-core/\_share: arquivos de interface e comuns em todo os dominios.
-core/entity: entidades dos dominios.
-core/use-case: use case de todos os dominios.
-infrastructure/config: arquivos de configuração para acessar arquivos externos.
-infrastructure/database: arquivos de c onfiguração para banco de dados
+application: contém os arquivos de token e modulos utilizados pelo nestjs. </br>
+api/controller: arquivos de controller e os dtos com decorações para o swagger </br>
+core/\_share: arquivos de interface e comuns em todo os dominios. </br>
+core/entity: entidades dos dominios.</br>
+core/use-case: use case de todos os dominios. </br>
+infrastructure/config: arquivos de configuração para acessar arquivos externos.</br>
+infrastructure/database: arquivos de c onfiguração para banco de dados</br>
 infrastructure/event: adaptres para eventos
 :
 
