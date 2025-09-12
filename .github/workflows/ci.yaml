@@ -26,7 +26,7 @@ jobs:
         run: npm rum build
 
       - name: Unity test
-        run: yarn test
+        run: npm run test:cov
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v2
