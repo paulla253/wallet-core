@@ -26,4 +26,9 @@ jobs:
         run: npm rum build
 
       - name: Unity test
-        run: yarn test
+        run: npm run test:cov
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
