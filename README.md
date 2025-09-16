@@ -14,6 +14,16 @@ Requisitos para entrega:
 - Gere o arquivo ".http" para realizarmos as chamadas em seu microsserviço
 - Disponibilize o microsserviço na porta: 3003.
 
+## Desafio Integração Continua:
+
+Crie uma pipeline de CI utilizando o Github actions que: </br>
+
+- Instale a aplicação
+- Execute os testes
+- Execute o SonarCloud
+
+Está disponivel no seguinte link: https://sonarcloud.io/summary/new_code?id=paulla253_wallet-core&branch=master
+
 ## Exemplo de env
 
 ```bash
